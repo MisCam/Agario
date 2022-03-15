@@ -17,8 +17,6 @@ io.on('connection', socket => {
 const { PORT, NAME, VERSION, MEDIATOR } = require('./config');
 const mediator = new Mediator(MEDIATOR);
 new UserManager({ mediator });
-new PhoneBook({ mediator });
-new NoteBook({ mediator });
 
 const Router = require("./application/router/Router");
 const router = new Router({ mediator });

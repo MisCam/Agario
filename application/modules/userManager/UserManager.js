@@ -5,18 +5,7 @@ class userManager extends BaseModule {
         super(options);
         this.users = [];
 
-        this.mediator.set(
-            this.TRIGGERS.GET_USER_ID, 
-            (login, password) => this.login(login, password),
-        );
-        this.mediator.set(
-            this.TRIGGERS.CHECK_USER, 
-            (login) => this.checkUser(login),
-        );
-        this.mediator.subscribe(
-            this.EVENTS.USER_REGISTRATION, 
-            (login, password) => this.registration(login, password),
-        );
+       
     }
 
     checkUser(login){

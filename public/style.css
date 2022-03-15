@@ -1,3 +1,15 @@
 body {
     background-color: black;
 }
+
+.start {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.start * {
+    width: 100%;
+}
