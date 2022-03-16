@@ -1,7 +1,6 @@
 const canv = document.getElementById('canv');
 const socket = io('http://localhost:3000');
-/* socket.emit(MESSAGES.NEW_MESSAGE, { name, message });
-socket.on(MESSAGES.NEW_MESSAGE, newMessage); */
+
 let config = {
   type: Phaser.AUTO,
   width: 600,
@@ -26,19 +25,21 @@ let config = {
 
 document.getElementById('start_game').addEventListener('click', async function() {
   const nick = document.getElementById('login_input').value;
-  //fetch(`http://localhost:3000/login/${nick}`);
+  socket.emit('login', { nick });
   canv.innerHTML = '';
   let game = new Phaser.Game(config);
 });
+
+socket.on('getScene', arr => drawPlayers(arr));
 
 function preload() {}
 
 function create() {
   moveKeys = this.input.keyboard.createCursorKeys();
   this.add.rectangle(0, 0, config.width*2, config.height*2, '0xffffff');
-  player = this.physics.add.sys.add.circle(100, 100, 25, '0xff0000');
+  player = this.add.circle(100, 100, 25, '0xff0000');
   const moving = setInterval(() => {
-    //move(player.x, player.y);
+    socket.emit('move', { x: player.x, y: player.y });
   }, 200);
 }
 
@@ -56,12 +57,6 @@ function update() {
 
 }
 
-function move(x, y){
-  const nick = document.getElementById('login_input').value;
-  //fetch(`http://localhost:3000/players/move/${nick}/${x}/${y}`);
-}
-
-async function getPlayers(){
-  //const answer = await fetch(`http://localhost:3000/players/get`);
-  //return answer.json();
+function drawPlayers(players){
+  console.log(players);
 }
