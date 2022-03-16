@@ -1,5 +1,16 @@
 body {
     background-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 610px;
+}
+
+#empty {
+    width: 600px;
+    height: 600px;
+    background-color: white;
 }
 
 .start {
