@@ -8,11 +8,11 @@ class GameManager extends BaseModule {
 
         this.mediator.subscribe(
             this.EVENTS.USER_LOGIN, 
-            (login) => this.login(login),
+            ({nick, user_id}) => this.login(nick, user_id),
         );
         this.mediator.subscribe(
             this.EVENTS.USER_MOVE, 
-            (nickname, x, y) => this.move(nickname,x,y),
+            (user_id, x, y) => this.move(user_id,x,y),
         );
         this.mediator.set(
             this.TRIGGERS.GET_PLAYERS, 
@@ -20,9 +20,8 @@ class GameManager extends BaseModule {
         );
     }
 
-    login(nickname) {
-        const { nickname } = data;
-        this.users.push({nickname, x:300, y:300, radius:25, color:'0xff0000'});
+    login(nickname, user_id) {
+        this.users.push({user_id, nickname, x:300, y:300, radius:25, color:'0xff0000'});
         return true;
     }
 
@@ -30,9 +29,9 @@ class GameManager extends BaseModule {
         return this.users;
     }
 
-    move(nickname, x, y){
+    move(user_id, x, y){
         for(let i = 0; i < this.users.length; i++){
-            if(this.users[i].nickname == nickname){
+            if(this.users[i].user_id == user_id){
                 this.users[i].x = x;
                 this.users[i].y = y;
             }

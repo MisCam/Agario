@@ -26,7 +26,7 @@ let config = {
 
 document.getElementById('start_game').addEventListener('click', async function() {
   const nick = document.getElementById('login_input').value;
-  //fetch(`http://localhost:3000/login/${nick}`);
+  socket.emit('login', { nick });
   canv.innerHTML = '';
   let game = new Phaser.Game(config);
 });
