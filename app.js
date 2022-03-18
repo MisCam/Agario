@@ -33,12 +33,20 @@ io.on('connection', socket => {
     },100);
     socket.on('disconnect', () => console.log('disconnect', socket.id));
     socket.on('message', data => io.emit('message', data));
+    socket.on('move', data => {
+        const x = data.x;
+        const y = data.y;
+        mediator.call(
+            mediator.EVENTS.USER_MOVE, { user_id, x, y }
+        );
+    });
     socket.on('login', data => {
         const nick = data.nick;
+        const playerX = data.playerX;
+        const playerY = data.playerY;
         mediator.call(
-            mediator.EVENTS.USER_LOGIN, { nick, user_id }
+            mediator.EVENTS.USER_LOGIN, { nick, user_id, playerX, playerY }
         );
-        console.log(mediator.get(mediator.TRIGGERS.GET_PLAYERS));
     });
 });
 

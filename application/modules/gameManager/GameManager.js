@@ -8,11 +8,11 @@ class GameManager extends BaseModule {
 
         this.mediator.subscribe(
             this.EVENTS.USER_LOGIN, 
-            ({nick, user_id}) => this.login(nick, user_id),
+            ({nick, user_id, playerX, playerY}) => this.login(nick, user_id, playerX, playerY),
         );
         this.mediator.subscribe(
             this.EVENTS.USER_MOVE, 
-            (user_id, x, y) => this.move(user_id,x,y),
+            ({user_id, x, y}) => this.move(user_id, x, y),
         );
         this.mediator.set(
             this.TRIGGERS.GET_PLAYERS, 
@@ -20,8 +20,8 @@ class GameManager extends BaseModule {
         );
     }
 
-    login(nickname, user_id) {
-        this.users.push({user_id, nickname, x:300, y:300, radius:25, color:'0xff0000'});
+    login(nickname, user_id, playerX, playerY) {
+        this.users.push({user_id, nickname, x:playerX, y:playerY, radius:25, color:'0xff0000'});
         return true;
     }
 

@@ -7,7 +7,7 @@ const CONFIG = {
         EVENTS: {
             USER_LOGIN: 'USER_LOGIN',
             USER_LOGOUT: 'USER_LOGOUT',
-            USER_REGISTRATION: 'USER_REGISTRATION',
+            USER_MOVE: 'USER_MOVE',
         },
         TRIGGERS: {
             GET_PLAYERS : 'GET_PLAYERS',
